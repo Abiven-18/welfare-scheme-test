@@ -1,0 +1,11 @@
+{
+  "name": "welfare-schemes-data-scripts",
+  "version": "1.0.0",
+  "description": "Data import scripts",
+  "scripts": {
+    "import": "node dataImport.js"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
