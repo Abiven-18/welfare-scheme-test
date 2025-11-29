@@ -1,15 +1,15 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import Loading from '../components/common/Loading';
+import FeedbackBox from '../components/home/FeedbackBox';
+import FilterGrid from '../components/home/FilterGrid';
+import Hero from '../components/home/Hero';
+import SchemePreview from '../components/home/SchemePreview';
 import { useFilterContext } from '../context/FilterContext';
 import { getSchemes } from '../services/api';
-import Hero from '../components/home/Hero';
-import FilterGrid from '../components/home/FilterGrid';
-import SchemePreview from '../components/home/SchemePreview';
-import FeedbackBox from '../components/home/FeedbackBox';
-import Loading from '../components/common/Loading';
 import { generatePageNumbers } from '../utils/helpers';
 
 const HomePage = () => {
-  const { filters } = useFilterContext();
+  const { filters, updateFilter } = useFilterContext();
   const [schemes, setSchemes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
@@ -42,9 +42,7 @@ const HomePage = () => {
   const handlePageChange = (page) => {
     if (page !== '...' && page !== pagination.currentPage) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Update page in context
-      const event = new CustomEvent('pageChange', { detail: page });
-      window.dispatchEvent(event);
+      updateFilter('page', page);
     }
   };
 

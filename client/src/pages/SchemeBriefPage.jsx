@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getSchemeById } from '../services/api';
+import { useCallback, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Loading from '../components/common/Loading';
-import { getPreviousName } from '../utils/helpers';
+import { getSchemeById } from '../services/api';
 
 const SchemeBriefPage = () => {
   const { id } = useParams();
@@ -59,24 +58,10 @@ const SchemeBriefPage = () => {
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-primary mb-3">{scheme.title}</h1>
-          {getPreviousName(scheme) && (
+          {scheme.schemeRename && scheme.schemeName && scheme.schemeRename !== scheme.schemeName && (
             <p className="text-sm text-secondary mb-3">
-              Previous name: <span className="font-medium text-primary">{getPreviousName(scheme)}</span>
+              Previous name: <span className="font-medium text-primary">{scheme.schemeName}</span>
             </p>
-          )}
-          {((scheme.revised && String(scheme.revised).trim()) || (scheme['renamed year'] && String(scheme['renamed year']).trim())) && (
-            <div className="space-y-1 mb-3">
-              {scheme.revised && String(scheme.revised).trim() && (
-                <p className="text-sm text-secondary">
-                  Revised: <span className="font-medium text-primary">{String(scheme.revised).trim()}</span>
-                </p>
-              )}
-              {scheme['renamed year'] && String(scheme['renamed year']).trim() && (
-                <p className="text-sm text-secondary">
-                  Renamed year: <span className="font-medium text-primary">{String(scheme['renamed year']).trim()}</span>
-                </p>
-              )}
-            </div>
           )}
           
           <div className="flex flex-wrap gap-2 text-sm">

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { getFilterOptions } from '../services/api';
 
 const FilterContext = createContext();
@@ -25,7 +25,7 @@ export const FilterProvider = ({ children }) => {
     years: [],
     ministries: [],
     themes: [],
-    primeMinsters: []
+    primeMinisters: []
   });
 
   const [loading, setLoading] = useState(true);

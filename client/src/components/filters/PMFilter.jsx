@@ -1,6 +1,5 @@
-import React from 'react';
 
-const PMFilter = ({ value, onChange, options }) => {
+const PMFilter = ({ value, onChange, options = [] }) => {
   return (
     <div>
       <label className="block text-sm font-medium text-primary mb-2">

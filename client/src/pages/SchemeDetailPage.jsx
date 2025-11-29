@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getSchemeById } from '../services/api';
-import DocumentViewer from '../components/scheme/DocumentViewer';
+import { useCallback, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Loading from '../components/common/Loading';
-import { formatDate, getPreviousName } from '../utils/helpers';
+import DocumentViewer from '../components/scheme/DocumentViewer';
+import { getSchemeById } from '../services/api';
 
 const SchemeDetailPage = () => {
   const { id } = useParams();
@@ -61,25 +60,10 @@ const SchemeDetailPage = () => {
           <h1 className="text-2xl font-bold text-primary flex-1">{scheme.title}</h1>
           <span className="text-sm text-secondary ml-4">{scheme.year}</span>
         </div>
-        {getPreviousName(scheme) && (
+        {scheme.schemeRename && scheme.schemeName && scheme.schemeRename !== scheme.schemeName && (
           <p className="text-sm text-secondary mb-4">
-            Previous name: <span className="font-medium text-primary">{getPreviousName(scheme)}</span>
+            Previous name: <span className="font-medium text-primary">{scheme.schemeName}</span>
           </p>
-        )}
-        {/* Optional metadata: Revised and Renamed year */}
-        {((scheme.revised && String(scheme.revised).trim()) || (scheme['renamed year'] && String(scheme['renamed year']).trim())) && (
-          <div className="space-y-1 mb-4">
-            {scheme.revised && String(scheme.revised).trim() && (
-              <p className="text-sm text-secondary">
-                Revised: <span className="font-medium text-primary">{String(scheme.revised).trim()}</span>
-              </p>
-            )}
-            {scheme['renamed year'] && String(scheme['renamed year']).trim() && (
-              <p className="text-sm text-secondary">
-                Renamed year: <span className="font-medium text-primary">{String(scheme['renamed year']).trim()}</span>
-              </p>
-            )}
-          </div>
         )}
 
         <div className="flex flex-wrap gap-2 mb-6">
@@ -157,10 +141,20 @@ const SchemeDetailPage = () => {
         schemeTitle={scheme.title}
       />
 
-      {scheme.createdAt && (
-        <p className="text-xs text-secondary text-center mt-6">
-          Added on {formatDate(scheme.createdAt)}
-        </p>
+      {scheme.tags && scheme.tags.length > 0 && (
+        <div className="bg-white border border-border rounded p-6 mt-6">
+          <h2 className="text-lg font-semibold text-primary mb-3">Tags</h2>
+          <div className="flex flex-wrap gap-2">
+            {scheme.tags.map((tag, index) => (
+              <span 
+                key={index}
+                className="px-3 py-1 bg-light text-secondary text-sm rounded"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

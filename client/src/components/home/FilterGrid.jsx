@@ -1,9 +1,8 @@
-import React from 'react';
 import { useFilterContext } from '../../context/FilterContext';
-import YearFilter from '../filters/YearFilter';
 import MinistryFilter from '../filters/MinistryFilter';
-import ThemeFilter from '../filters/ThemeFilter';
 import PMFilter from '../filters/PMFilter';
+import ThemeFilter from '../filters/ThemeFilter';
+import YearFilter from '../filters/YearFilter';
 
 const FilterGrid = () => {
   const { filters, filterOptions, updateFilter, resetFilters } = useFilterContext();
@@ -29,22 +28,22 @@ const FilterGrid = () => {
           <YearFilter
             value={filters.year}
             onChange={(value) => updateFilter('year', value)}
-            options={filterOptions.years}
+            options={filterOptions.years || []}
           />
           <MinistryFilter
             value={filters.ministry}
             onChange={(value) => updateFilter('ministry', value)}
-            options={filterOptions.ministries}
+            options={filterOptions.ministries || []}
           />
           <ThemeFilter
             value={filters.theme}
             onChange={(value) => updateFilter('theme', value)}
-            options={filterOptions.themes}
+            options={filterOptions.themes || []}
           />
           <PMFilter
             value={filters.primeMinister}
             onChange={(value) => updateFilter('primeMinister', value)}
-            options={filterOptions.primeMinsters}
+            options={filterOptions.primeMinisters || []}
           />
         </div>
       </div>
