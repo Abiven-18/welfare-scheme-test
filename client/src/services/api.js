@@ -43,7 +43,8 @@ export const getSchemes = async (params = {}) => {
     query = query.ilike('Year_Launched', `%${params.year}%`);
   }
   if (params.ministry) {
-    query = query.eq('Ministry', params.ministry);
+    // Use ilike for case-insensitive partial match to handle variations
+    query = query.ilike('Ministry', `%${params.ministry}%`);
   }
   if (params.theme) {
     query = query.ilike('Classification', `%${params.theme}%`);

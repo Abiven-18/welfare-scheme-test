@@ -1,14 +1,6 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const navigate = useNavigate();
-
-  const handleSearch = (searchTerm) => {
-    navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
-  };
-
   return (
     <header className="bg-white border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,10 +20,6 @@ const Header = () => {
               Contact
             </Link>
           </nav>
-        </div>
-        
-        <div className="pb-4">
-          <SearchBar onSearch={handleSearch} />
         </div>
       </div>
     </header>

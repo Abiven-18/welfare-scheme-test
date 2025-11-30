@@ -60,7 +60,7 @@ const HomePage = () => {
               <>
                 <div className="mb-6">
                   <p className="text-sm text-secondary">
-                    Showing {schemes.length} of {pagination.totalSchemes} schemes
+                    Showing {((pagination.currentPage - 1) * 10) + 1}-{Math.min(pagination.currentPage * 10, pagination.totalSchemes)} of {pagination.totalSchemes} schemes
                   </p>
                 </div>
                 

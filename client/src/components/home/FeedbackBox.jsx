@@ -38,20 +38,6 @@ const FeedbackBox = () => {
       <h3 className="text-lg font-semibold text-primary mb-4">Send Feedback</h3>
       
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-primary mb-1">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 text-sm border border-border rounded focus:outline-none focus:border-primary"
-          />
-        </div>
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-primary mb-1">
