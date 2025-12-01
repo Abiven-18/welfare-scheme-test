@@ -173,10 +173,12 @@ export const getFilterOptions = async () => {
 };
 
 export const downloadSchemeDocument = async (id) => {
-  // This will be updated once we set up R2
   const scheme = await getSchemeById(id);
   if (scheme && scheme.documentUrl) {
+    // Open PDF in new tab
     window.open(scheme.documentUrl, '_blank');
+  } else {
+    console.error('No document URL found for this scheme');
   }
 };
 
@@ -184,7 +186,11 @@ export const downloadSchemeDocument = async (id) => {
 export const submitFeedback = async (feedbackData) => {
   const { data, error } = await supabase
     .from('feedback')
-    .insert([feedbackData])
+    .insert([{
+      email: feedbackData.email,
+      message: feedbackData.message,
+      status: 'pending'
+    }])
     .select();
   
   if (error) {

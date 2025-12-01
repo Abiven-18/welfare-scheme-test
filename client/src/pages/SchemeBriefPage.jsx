@@ -159,6 +159,16 @@ const SchemeBriefPage = () => {
           >
             View Full Details
           </Link>
+          {scheme.documentUrl && (
+            <a
+              href={scheme.documentUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2 text-sm bg-primary text-white rounded hover:bg-secondary"
+            >
+              View PDF
+            </a>
+          )}
           <Link
             to="/"
             className="px-4 py-2 text-sm bg-light text-secondary rounded hover:bg-border"

@@ -136,8 +136,7 @@ const SchemeDetailPage = () => {
       </div>
 
       <DocumentViewer
-        schemeId={scheme.id}
-        documentPath={scheme.documentPath}
+        documentUrl={scheme.documentUrl}
         schemeTitle={scheme.title}
       />
 

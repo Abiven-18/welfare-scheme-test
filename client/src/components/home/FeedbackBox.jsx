@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { submitFeedback } from '../../services/api';
 
 const FeedbackBox = () => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     message: ''
   });
@@ -25,7 +24,7 @@ const FeedbackBox = () => {
     try {
       await submitFeedback(formData);
       setStatus({ type: 'success', message: 'Thank you for your feedback!' });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ email: '', message: '' });
     } catch (error) {
       setStatus({ type: 'error', message: 'Failed to submit feedback. Please try again.' });
     } finally {
@@ -34,13 +33,12 @@ const FeedbackBox = () => {
   };
 
   return (
-    <div className="bg-light border border-border rounded p-6">
-      <h3 className="text-lg font-semibold text-primary mb-4">Send Feedback</h3>
+    <div className="bg-gray-100 border border-gray-300 rounded p-6">
+      <h3 className="text-lg font-semibold text-black mb-4">Send Feedback</h3>
       
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-primary mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-black">
             Email
           </label>
           <input
@@ -50,12 +48,12 @@ const FeedbackBox = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 text-sm border border-border rounded focus:outline-none focus:border-primary"
+            className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:border-black bg-white text-gray-900"
           />
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-primary mb-1">
+          <label htmlFor="message" className="block text-sm font-medium text-black">
             Message
           </label>
           <textarea
@@ -65,12 +63,12 @@ const FeedbackBox = () => {
             onChange={handleChange}
             required
             rows="4"
-            className="w-full px-3 py-2 text-sm border border-border rounded focus:outline-none focus:border-primary resize-none"
+            className="w-full px-3 py-2 text-sm border border-gray-300 rounded focus:outline-none focus:border-black resize-none bg-white text-gray-900"
           />
         </div>
 
         {status.message && (
-          <div className={`text-sm ${status.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+          <div className={`text-sm ${status.type === 'success' ? 'text-green-600 ' : 'text-red-600'}`}>
             {status.message}
           </div>
         )}
@@ -78,7 +76,7 @@ const FeedbackBox = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full px-4 py-2 text-sm bg-primary text-white rounded hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full px-4 py-2 text-sm bg-black text-white rounded hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? 'Submitting...' : 'Submit Feedback'}
         </button>
